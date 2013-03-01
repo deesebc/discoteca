@@ -16,6 +16,7 @@
     and @Service  that will be auto-registered as Spring beans  -->          
     <context:component-scan base-package="es.discoteca.bbdd" />
     <!-- <context:annotation-config /> -->
+    <context:annotation-config />
 
     <tx:annotation-driven transaction-manager="transactionManagerLocal"/>
 

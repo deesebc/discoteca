@@ -4,6 +4,8 @@ package es.discoteca.bbdd.bean;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -38,6 +40,7 @@ public class Cancion implements java.io.Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "IDENT", unique = true, nullable = false)
 	public Integer getIdent() {
 		return this.ident;
