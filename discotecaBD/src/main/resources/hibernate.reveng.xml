@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+	<type-mapping>
+		<sql-type jdbc-type="INTEGER" hibernate-type="Integer"></sql-type>
+	</type-mapping>
+	<table-filter match-catalog="almacen" match-name="auxdisint" />
+	<table-filter match-catalog="almacen" match-name="disco" />
+	<table-filter match-catalog="almacen" match-name="interprete" />
+	<table-filter match-name="cancion" match-catalog="almacen"></table-filter>
+
+	<table name="cancion">
+		<foreign-key constraint-name="FK_CAN_DIS">
+			<set exclude="true" />
+		</foreign-key>
+	</table>
+</hibernate-reverse-engineering>
