@@ -37,4 +37,14 @@ public class DiscoServiceImpl implements DiscoService {
 		return dao.findAll();
 	}
 
+	@Override
+	public Disco findById(final Integer id) {
+		return dao.findById(id);
+	}
+
+	@Override
+	public void update(final Disco entity) {
+		dao.merge(entity);
+	}
+
 }

@@ -17,4 +17,8 @@ public interface DiscoService {
 
 	List<Disco> findAll();
 
+	Disco findById(final Integer id);
+
+	void update(final Disco entity);
+
 }
