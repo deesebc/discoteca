@@ -3,6 +3,8 @@
  */
 package es.discoteca.bbdd.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,11 +25,16 @@ public class DiscoServiceImpl implements DiscoService {
 	private DiscoDao dao;
 
 	@Override
-	public void create(String nombre, String grupo) {
+	public void create(final String nombre, final String grupo) {
 		Disco bean = new Disco();
 		bean.setGrupo(grupo);
 		bean.setNombre(nombre);
 		dao.persist(bean);
+	}
+
+	@Override
+	public List<Disco> findAll() {
+		return dao.findAll();
 	}
 
 }
