@@ -1,13 +1,17 @@
 package es.discoteca.bbdd.test.service;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import es.discoteca.bbdd.bean.Cancion;
 import es.discoteca.bbdd.bean.Disco;
 import es.discoteca.bbdd.service.DiscoService;
 
@@ -25,10 +29,29 @@ public class DiscoServiceTest {
 	DiscoService service;
 
 	@Test
+	@Ignore
 	public void create() {
 		LOGGER.info("DiscoServiceTest - create - init");
 		try {
 			service.create("disco X", "grupo X");
+			Assert.assertTrue(true);
+		} catch (Exception except) {
+			LOGGER.error("Exception: ", except);
+		}
+		LOGGER.info("DiscoServiceTest - create - end");
+	}
+
+	@Test
+	public void findAll() {
+		LOGGER.info("DiscoServiceTest - create - init");
+		try {
+			List<Disco> discos = service.findAll();
+			for (Disco bean : discos) {
+				LOGGER.info("Disco nombre: " + bean.getNombre());
+				for (Cancion bean2 : bean.getCanciones()) {
+					LOGGER.info("Cancion nombre: " + bean2.getNombre());
+				}
+			}
 			Assert.assertTrue(true);
 		} catch (Exception except) {
 			LOGGER.error("Exception: ", except);

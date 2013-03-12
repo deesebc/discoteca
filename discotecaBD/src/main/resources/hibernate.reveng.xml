@@ -10,9 +10,5 @@
 	<table-filter match-catalog="almacen" match-name="interprete" />
 	<table-filter match-name="cancion" match-catalog="almacen"></table-filter>
 
-	<table name="cancion">
-		<foreign-key constraint-name="FK_CAN_DIS">
-			<set exclude="true" />
-		</foreign-key>
-	</table>
+	
 </hibernate-reverse-engineering>

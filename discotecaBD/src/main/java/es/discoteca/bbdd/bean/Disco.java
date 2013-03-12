@@ -5,12 +5,14 @@ package es.discoteca.bbdd.bean;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -28,6 +30,7 @@ public class Disco implements java.io.Serializable {
 	private Integer ident;
 	private String nombre;
 	private String grupo;
+	private Set<Cancion> canciones = new HashSet<Cancion>(0);
 	private Set<Auxdisint> auxdisints = new HashSet<Auxdisint>(0);
 
 	public Disco() {
@@ -38,37 +41,49 @@ public class Disco implements java.io.Serializable {
 	}
 
 	public Disco(final Integer ident, final String nombre, final String grupo,
-			final Set<Auxdisint> auxdisints) {
+			final Set<Cancion> canciones, final Set<Auxdisint> auxdisints) {
 		this.ident = ident;
 		this.nombre = nombre;
 		this.grupo = grupo;
+		this.canciones = canciones;
 		this.auxdisints = auxdisints;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "intdis.disco")
 	public Set<Auxdisint> getAuxdisints() {
-		return this.auxdisints;
+		return auxdisints;
+	}
+
+	// @OneToMany(fetch = FetchType.LAZY, mappedBy = "disco")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "IDDISCO")
+	public Set<Cancion> getCanciones() {
+		return canciones;
 	}
 
 	@Column(name = "GRUPO", length = 45)
 	public String getGrupo() {
-		return this.grupo;
+		return grupo;
 	}
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "IDENT", unique = true, nullable = false)
 	public Integer getIdent() {
-		return this.ident;
+		return ident;
 	}
 
 	@Column(name = "NOMBRE", length = 45)
 	public String getNombre() {
-		return this.nombre;
+		return nombre;
 	}
 
 	public void setAuxdisints(final Set<Auxdisint> auxdisints) {
 		this.auxdisints = auxdisints;
+	}
+
+	public void setCanciones(final Set<Cancion> canciones) {
+		this.canciones = canciones;
 	}
 
 	public void setGrupo(final String grupo) {
