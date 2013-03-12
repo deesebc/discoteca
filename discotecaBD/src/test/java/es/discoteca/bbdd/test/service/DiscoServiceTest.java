@@ -30,6 +30,27 @@ public class DiscoServiceTest {
 
 	@Test
 	@Ignore
+	public void addSong() {
+		LOGGER.info("DiscoServiceTest - addSong - init");
+		try {
+			Disco bean = service.findById(1);
+			Cancion cancion = new Cancion();
+			cancion.setDuracion("00:01");
+			cancion.setIdent(null);
+			cancion.setNombre("songname");
+			cancion.setPosicion(2);
+			bean.getCanciones().add(cancion);
+			service.update(bean);
+			Assert.assertTrue(true);
+		} catch (Exception except) {
+			LOGGER.error("Exception: ", except);
+			Assert.assertTrue(false);
+		}
+		LOGGER.info("DiscoServiceTest - addSong - end");
+	}
+
+	@Test
+	@Ignore
 	public void create() {
 		LOGGER.info("DiscoServiceTest - create - init");
 		try {

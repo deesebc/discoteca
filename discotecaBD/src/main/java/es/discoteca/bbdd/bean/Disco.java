@@ -56,7 +56,7 @@ public class Disco implements java.io.Serializable {
 
 	// @OneToMany(fetch = FetchType.LAZY, mappedBy = "disco")
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name = "IDDISCO")
+	@JoinColumn(name = "IDDISCO", referencedColumnName = "IDENT")
 	public Set<Cancion> getCanciones() {
 		return canciones;
 	}
