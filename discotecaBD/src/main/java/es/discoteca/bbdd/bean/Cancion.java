@@ -20,6 +20,7 @@ public class Cancion implements java.io.Serializable {
 	private Integer ident;
 	private String nombre;
 	private String duracion;
+	private Integer posicion;
 
 	public Cancion() {
 	}
@@ -28,27 +29,34 @@ public class Cancion implements java.io.Serializable {
 		this.ident = ident;
 	}
 
-	public Cancion(final Integer ident, final String nombre, final String duracion) {
+	public Cancion(final Integer ident, final String nombre, final String duracion,
+			final Integer posicion) {
 		this.ident = ident;
 		this.nombre = nombre;
 		this.duracion = duracion;
+		this.posicion = posicion;
 	}
 
 	@Column(name = "DURACION", length = 8)
 	public String getDuracion() {
-		return this.duracion;
+		return duracion;
 	}
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "IDENT", unique = true, nullable = false)
 	public Integer getIdent() {
-		return this.ident;
+		return ident;
 	}
 
 	@Column(name = "NOMBRE", length = 45)
 	public String getNombre() {
-		return this.nombre;
+		return nombre;
+	}
+
+	@Column(name = "POSICION", length = 3)
+	public Integer getPosicion() {
+		return posicion;
 	}
 
 	public void setDuracion(final String duracion) {
@@ -61,6 +69,10 @@ public class Cancion implements java.io.Serializable {
 
 	public void setNombre(final String nombre) {
 		this.nombre = nombre;
+	}
+
+	public void setPosicion(final Integer posicion) {
+		this.posicion = posicion;
 	}
 
 }
