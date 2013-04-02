@@ -31,7 +31,7 @@ public class Disco implements java.io.Serializable {
 	private String nombre;
 	private String grupo;
 	private Set<Cancion> canciones = new HashSet<Cancion>(0);
-	private Set<Auxdisint> auxdisints = new HashSet<Auxdisint>(0);
+	private Set<Interprete> interpretes = new HashSet<Interprete>(0);
 
 	public Disco() {
 	}
@@ -41,17 +41,12 @@ public class Disco implements java.io.Serializable {
 	}
 
 	public Disco(final Integer ident, final String nombre, final String grupo,
-			final Set<Cancion> canciones, final Set<Auxdisint> auxdisints) {
+			final Set<Cancion> canciones, final Set<Interprete> interpretes) {
 		this.ident = ident;
 		this.nombre = nombre;
 		this.grupo = grupo;
 		this.canciones = canciones;
-		this.auxdisints = auxdisints;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "intdis.disco")
-	public Set<Auxdisint> getAuxdisints() {
-		return auxdisints;
+		this.interpretes = interpretes;
 	}
 
 	// @OneToMany(fetch = FetchType.LAZY, mappedBy = "disco")
@@ -73,13 +68,15 @@ public class Disco implements java.io.Serializable {
 		return ident;
 	}
 
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "IDDISCO", referencedColumnName = "IDENT")
+	public Set<Interprete> getInterpretes() {
+		return interpretes;
+	}
+
 	@Column(name = "NOMBRE", length = 45)
 	public String getNombre() {
 		return nombre;
-	}
-
-	public void setAuxdisints(final Set<Auxdisint> auxdisints) {
-		this.auxdisints = auxdisints;
 	}
 
 	public void setCanciones(final Set<Cancion> canciones) {
@@ -92,6 +89,10 @@ public class Disco implements java.io.Serializable {
 
 	public void setIdent(final Integer ident) {
 		this.ident = ident;
+	}
+
+	public void setInterpretes(final Set<Interprete> interpretes) {
+		this.interpretes = interpretes;
 	}
 
 	public void setNombre(final String nombre) {

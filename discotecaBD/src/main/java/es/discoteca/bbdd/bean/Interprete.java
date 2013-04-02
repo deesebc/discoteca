@@ -2,14 +2,11 @@ package es.discoteca.bbdd.bean;
 
 // Generated 01-mar-2013 9:51:56 by Hibernate Tools 4.0.0
 
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -19,13 +16,10 @@ import javax.persistence.Table;
 @Table(name = "interprete", catalog = "almacen")
 public class Interprete implements java.io.Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private Integer ident;
 	private String nombre;
-	private Set<Auxdisint> auxdisints = new HashSet<Auxdisint>(0);
+	private String instrumento;
 
 	public Interprete() {
 	}
@@ -34,34 +28,35 @@ public class Interprete implements java.io.Serializable {
 		this.ident = ident;
 	}
 
-	public Interprete(final Integer ident, final String nombre, final Set<Auxdisint> auxdisints) {
+	public Interprete(final Integer ident, final String nombre, final String instrumento) {
 		this.ident = ident;
 		this.nombre = nombre;
-		this.auxdisints = auxdisints;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "intdis.interprete")
-	public Set<Auxdisint> getAuxdisints() {
-		return this.auxdisints;
+		this.instrumento = instrumento;
 	}
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "IDENT", unique = true, nullable = false)
 	public Integer getIdent() {
-		return this.ident;
+		return ident;
+	}
+
+	@Column(name = "INSTRUMENTO", length = 8)
+	public String getInstrumento() {
+		return instrumento;
 	}
 
 	@Column(name = "NOMBRE", length = 45)
 	public String getNombre() {
-		return this.nombre;
-	}
-
-	public void setAuxdisints(final Set<Auxdisint> auxdisints) {
-		this.auxdisints = auxdisints;
+		return nombre;
 	}
 
 	public void setIdent(final Integer ident) {
 		this.ident = ident;
+	}
+
+	public void setInstrumento(final String instrumento) {
+		this.instrumento = instrumento;
 	}
 
 	public void setNombre(final String nombre) {
