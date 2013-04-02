@@ -50,7 +50,7 @@ public class Disco implements java.io.Serializable {
 	}
 
 	// @OneToMany(fetch = FetchType.LAZY, mappedBy = "disco")
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
 	@JoinColumn(name = "IDDISCO", referencedColumnName = "IDENT")
 	public Set<Cancion> getCanciones() {
 		return canciones;
@@ -68,7 +68,7 @@ public class Disco implements java.io.Serializable {
 		return ident;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
 	@JoinColumn(name = "IDDISCO", referencedColumnName = "IDENT")
 	public Set<Interprete> getInterpretes() {
 		return interpretes;
