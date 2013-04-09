@@ -32,8 +32,7 @@ public class LibroServiceImpl implements LibroService {
 
 	@Override
 	public List<Libro> find(final String name, final String author, final String serie) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.find(name, author, serie);
 	}
 
 	@Override
@@ -49,8 +48,7 @@ public class LibroServiceImpl implements LibroService {
 	@Override
 	public List<Libro> findPaginate(final String name, final String author, final String serie,
 			final Pagination pagination) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.findPaginate(name, author, serie, pagination);
 	}
 
 	@Override
