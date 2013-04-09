@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import es.discoteca.bbdd.bean.Libro;
+import es.discoteca.bbdd.bean.Pagination;
 import es.discoteca.bbdd.dao.LibroDao;
 import es.discoteca.bbdd.service.LibroService;
 
@@ -25,15 +26,14 @@ public class LibroServiceImpl implements LibroService {
 	private LibroDao dao;
 
 	@Override
-	public void create(final String nombre, final String autor, final String argumento,
-			final String paginas) {
+	public void create(final Libro entity) {
+		dao.persist(entity);
+	}
+
+	@Override
+	public List<Libro> find(final String name, final String author, final String serie) {
 		// TODO Auto-generated method stub
-		Libro bean = new Libro();
-		bean.setArgumento(argumento);
-		bean.setNombre(nombre);
-		bean.setAutor(autor);
-		bean.setPaginas(Integer.valueOf(paginas));
-		dao.persist(bean);
+		return null;
 	}
 
 	@Override
@@ -44,6 +44,19 @@ public class LibroServiceImpl implements LibroService {
 	@Override
 	public Libro findById(final Integer id) {
 		return dao.findById(id);
+	}
+
+	@Override
+	public List<Libro> findPaginate(final String name, final String author, final String serie,
+			final Pagination pagination) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void remove(final Libro entity) {
+		// TODO Auto-generated method stub
+		dao.remove(entity);
 	}
 
 	@Override
